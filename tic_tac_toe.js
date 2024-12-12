@@ -199,6 +199,7 @@ const GameController = (function () {
                 toggleTurn();
             };
 
+            // TESTING
             Gameboard.printTicTacToeBoard();
             if (getGameState() === player1.getTurn()) {
                 console.log("Player 1 Won!");
@@ -208,10 +209,12 @@ const GameController = (function () {
                 console.log("DRAW!");
             }
 
-            return getGameState();
         } else {
+            // TESTING
             console.log("GAME IS OVER. RESTART?");
         }
+
+        return getGameState();
     }
 
     return {
