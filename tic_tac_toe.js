@@ -4,26 +4,27 @@
 */
 
 const Gameboard = (function () {
-    const _board = Array(3).map((col) => Array(3));
+    const _board = Array(3).map((col) => Array(3).fill(0));
 
-    // get value from a board square
     function getSquareValue(rowInd, colInd) {
         return _board[rowInd][colInd];
     }
-    
-    // update board state on player move
-    function updateBoard(player, square) {
 
+    function setSquareValue(symbol, rowInd, colInd) {
+        _board[rowInd][colInd] = symbol;
     }
 
-    // clear board
     function clearBoard() {
-
+        for (let i = 0; i < _board.length; i++) {
+            for (let j = 0; j < _board[i].length; j++) {
+                _board[rowInd][colInd] = 0;
+            }
+        }
     }
 
     return {
         getSquareValue,
-        updateBoard,
+        setSquareValue,
         clearBoard
     };
 
