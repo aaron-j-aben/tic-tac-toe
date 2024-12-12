@@ -4,7 +4,108 @@
 */
 
 const Gameboard = (function () {
-    const board = Array(3).map((col) => Array(3)); 
+    const _board = Array(3).map((col) => Array(3));
 
-    return {}
+    // get value from a board square
+    function getSquareValue(rowInd, colInd) {
+        return _board[rowInd][colInd];
+    }
+    
+    // update board state on player move
+    function updateBoard(player, square) {
+
+    }
+
+    // clear board
+    function clearBoard() {
+
+    }
+
+    return {
+        getSquareValue,
+        updateBoard,
+        clearBoard
+    };
+
+})();
+
+function Player(symbol) {
+    // Player symbol
+    let _symbol = symbol;
+
+    function getSymbol() {
+        return _symbol;
+    }
+
+    return {
+        getSymbol
+    };
+};
+
+const GameController = (function () {
+    let _gameState = 0;
+    let player1 = Player('X');
+    let player2 = Player('O');
+    let _playerTurn = 1;
+
+    function getTurn() {
+        return _playerTurn;
+    }
+
+    function toggleTurn() {
+        _playerTurn = Number(!_playerTurn);
+    }
+
+    // Check for win conditions
+    function checkColumn(player) {
+
+    }
+
+    function checkRow(player) {
+
+    }
+
+    function checkDiagonal(player) {
+
+    }
+
+    // Check for draws - all squares filled, win condition not fulfilled
+
+    // player turn behavior
+    function playerAction(player) {
+    }
+
+    // Restart game
+    function restartGame() {
+
+    }
+
+    // End game
+    function endGame() {
+
+    }
+
+    // Individual turn
+    function playTurn() {
+
+    }
+
+    return {
+        getTurn,
+        playTurn,
+        restartGame,
+        endGame
+    }
+})();
+
+const DisplayController = (function () {
+    // Initialize board - assign listeners for all positions
+
+    // Reset board
+
+    // Restart board button handling
+
+    // Deactivate squares
+
+    // Announce winner
 })();
