@@ -185,29 +185,33 @@ const GameController = (function () {
      * 
      * @param {number} row 
      * @param {number} col 
-     * @returns the next player's turn
+     * @returns game state
      */
     function playTurn(row, col) {
-        if (Gameboard.getSquareValue(row, col) !== 0) {
-            console.log("SQUARE OCCUPIED. CHOOSE OTHER SQUARE");
-            return getPlayerTurn();
+        if (getGameState() === ONGOING) {
+            if (Gameboard.getSquareValue(row, col) !== 0) {
+                console.log("SQUARE OCCUPIED. CHOOSE OTHER SQUARE");
+                return getGameState();
+            }
+
+            Gameboard.setSquareValue(getPlayerTurn(), row, col);
+            if (updateGameState(row, col) === ONGOING) {
+                toggleTurn();
+            };
+
+            Gameboard.printTicTacToeBoard();
+            if (getGameState() === player1.getTurn()) {
+                console.log("Player 1 Won!");
+            } else if (getGameState() === player2.getTurn()) {
+                console.log("Player 2 Won!");
+            } else if (getGameState() === DRAW) {
+                console.log("DRAW!");
+            }
+
+            return getGameState();
+        } else {
+            console.log("GAME IS OVER. RESTART?");
         }
-
-        Gameboard.setSquareValue(getPlayerTurn(), row, col);
-        if (updateGameState(row, col) === ONGOING) {
-            toggleTurn();
-        };
-
-        Gameboard.printTicTacToeBoard();
-        if (getGameState() === player1.getTurn()) {
-            console.log("Player 1 Won!");
-        } else if (getGameState() === player2.getTurn()) {
-            console.log("Player 2 Won!");
-        } else if (getGameState() === DRAW) {
-            console.log("DRAW!");
-        }
-
-        return getPlayerTurn();
     }
 
     return {
