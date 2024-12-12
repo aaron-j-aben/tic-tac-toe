@@ -20,6 +20,10 @@ const Gameboard = (function () {
         _board[rowInd][colInd] = playerTurn;
     }
 
+    function boardFull() {
+        return _board.every((row) => !row.includes(0));
+    }
+
     function clearBoard() {
         for (let i = 0; i < _board.length; i++) {
             for (let j = 0; j < _board[i].length; j++) {
