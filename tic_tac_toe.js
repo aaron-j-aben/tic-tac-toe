@@ -35,6 +35,7 @@ const Gameboard = (function () {
     return {
         getSquareValue,
         setSquareValue,
+        isFull,
         clearBoard
     };
 
