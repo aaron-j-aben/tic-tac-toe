@@ -10,8 +10,8 @@ const Gameboard = (function () {
         return _board[rowInd][colInd];
     }
 
-    function setSquareValue(symbol, rowInd, colInd) {
-        _board[rowInd][colInd] = symbol;
+    function setSquareValue(player, rowInd, colInd) {
+        _board[rowInd][colInd] = player;
     }
 
     function clearBoard() {
