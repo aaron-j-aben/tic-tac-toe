@@ -65,10 +65,14 @@ const GameController = (function () {
     const P1WIN = 1;
     const P2WIN = 2;
     
-    let _gameState = 0;
+    let _gameState = ONGOING;
     let player1 = Player(1, 'X');
     let player2 = Player(2, 'O');
     let _playerTurn = player1.getTurn();
+
+    function getGameState() {
+        return _gameState;
+    }
 
     function getTurn() {
         return _playerTurn;
@@ -158,6 +162,7 @@ const GameController = (function () {
     }
 
     return {
+        getGameState,
         getTurn,
         playTurn,
         restartGame,
