@@ -78,6 +78,10 @@ const GameController = (function () {
         return _playerTurn;
     }
 
+    function setGameState(state) {
+        _gameState = state;
+    }
+
     function toggleTurn() {
         _playerTurn = (_playerTurn === player1.getTurn()) ? player2.getTurn() : player1.getTurn();
     }
@@ -150,7 +154,9 @@ const GameController = (function () {
 
     // Restart game
     function restartGame() {
-
+        Gameboard.clearBoard();
+        setTurn(player1.getTurn());
+        setGameState(ONGOING);
     }
 
     // End game
