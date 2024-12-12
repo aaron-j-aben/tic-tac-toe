@@ -76,19 +76,53 @@ const GameController = (function () {
     }
 
     // Check for win conditions
-    function checkColumn(player) {
-        
+    function checkColumn(col) {
+        for (let row = 0; row < 3; row++) {  // Probably update this to reflect boards of different sizes
+            if (Gameboard.getSquareValue(row, col) !== _playerTurn) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    function checkRow(player) {
+    function checkRow(row) {
+        for (let col = 0; col < 3; col++) {  // Probably update this to reflect boards of different sizes
+            if (Gameboard.getSquareValue(row, col) !== _playerTurn) {
+                return false;
+            }
+        }
 
+        return true;
     }
 
-    function checkDiagonal(player) {
+    function checkDiagonals(row, col) {
+        // check main diagonal
+        if (row === col) {
+            for (let main = 0; main < 3; main++) {
+                if (Gameboard.getSquareValue(main, main) !== _playerTurn) {
+                    return false;
+                }
+            }
+        }
+
+        //check minor diagonal
+        if (Math.abs(row - col) === 2 || row === 1 && col === 1) {
+            for (let minor = 0; minor < 3; main++) {
+                if (Gameboard.getSquareValue(minor, 2 - minor) !== _playerTurn) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
 
     }
 
     // Check for draws - all squares filled, win condition not fulfilled
+    function checkWin(row, col) {
+        
+    }
 
     // player turn behavior
     function playerAction(player) {
