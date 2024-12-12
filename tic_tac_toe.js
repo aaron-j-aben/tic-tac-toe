@@ -74,7 +74,7 @@ const GameController = (function () {
         return _gameState;
     }
 
-    function getTurn() {
+    function getPlayerTurn() {
         return _playerTurn;
     }
 
@@ -142,13 +142,16 @@ const GameController = (function () {
      */
     function updateGameState(row, col) {
         if (checkRow(row) || checkColumn(col) || checkDiagonals(row, col)) {
+            setGameState(_playerTurn);
             return _playerTurn;
         }
 
         if (Gameboard.isFull()) {
+            setGameState(DRAW);
             return DRAW;
         }
 
+        setGameState(ONGOING);
         return ONGOING;
     }
 
@@ -159,22 +162,17 @@ const GameController = (function () {
         setGameState(ONGOING);
     }
 
-    // End game
-    function endGame() {
-
-    }
-
     // Individual turn
-    function playTurn() {
-
+    function playTurn(row, col) {
+        Gameboard.setSquareValue(getPlayerTurn(), row, col);
+        updateGameState(row, col) !== 0;
     }
 
     return {
         getGameState,
-        getTurn,
+        getPlayerTurn,
         playTurn,
-        restartGame,
-        endGame
+        restartGame
     }
 })();
 
