@@ -181,7 +181,18 @@ const GameController = (function () {
     }
 
     // Individual turn
+    /**
+     * 
+     * @param {number} row 
+     * @param {number} col 
+     * @returns the next player's turn
+     */
     function playTurn(row, col) {
+        if (Gameboard.getSquareValue(row, col) !== 0) {
+            console.log("SQUARE OCCUPIED. CHOOSE OTHER SQUARE");
+            return getPlayerTurn();
+        }
+
         Gameboard.setSquareValue(getPlayerTurn(), row, col);
         if (updateGameState(row, col) === ONGOING) {
             toggleTurn();
@@ -195,6 +206,8 @@ const GameController = (function () {
         } else if (getGameState() === DRAW) {
             console.log("DRAW!");
         }
+
+        return getPlayerTurn();
     }
 
     return {
