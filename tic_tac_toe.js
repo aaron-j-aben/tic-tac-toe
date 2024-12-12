@@ -82,6 +82,10 @@ const GameController = (function () {
         _playerTurn = (_playerTurn === player1.getTurn()) ? player2.getTurn() : player1.getTurn();
     }
 
+    function setTurn(player) {
+        _playerTurn = player;
+    }
+
     // Check for win conditions
     function checkColumn(col) {
         for (let row = 0; row < 3; row++) {  // Probably update this to reflect boards of different sizes
@@ -142,10 +146,6 @@ const GameController = (function () {
         }
 
         return ONGOING;
-    }
-
-    // player turn behavior
-    function playerAction(player) {
     }
 
     // Restart game
