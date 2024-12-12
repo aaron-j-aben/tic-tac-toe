@@ -132,14 +132,16 @@ const GameController = (function () {
      * @param {number} col 
      * @returns - integer representing the game state after checking win conditions
      */
-    function checkWin(row, col) {
+    function updateGameState(row, col) {
         if (checkRow(row) || checkColumn(col) || checkDiagonals(row, col)) {
             return _playerTurn;
         }
 
         if (Gameboard.isFull()) {
-            return -1;
+            return DRAW;
         }
+
+        return ONGOING;
     }
 
     // player turn behavior
