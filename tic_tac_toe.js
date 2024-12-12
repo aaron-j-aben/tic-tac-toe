@@ -10,6 +10,12 @@ const Gameboard = (function () {
         return _board[rowInd][colInd];
     }
 
+    /**
+     * 
+     * @param {number} player - integer corresponding to the player number; 1 or 2
+     * @param {number} rowInd 
+     * @param {number} colInd 
+     */
     function setSquareValue(player, rowInd, colInd) {
         _board[rowInd][colInd] = player;
     }
