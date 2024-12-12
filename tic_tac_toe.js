@@ -12,12 +12,12 @@ const Gameboard = (function () {
 
     /**
      * 
-     * @param {number} player - integer corresponding to the player number; 1 or 2
+     * @param {number} playerTurn - integer corresponding to the player number; 1 or 2
      * @param {number} rowInd 
      * @param {number} colInd 
      */
-    function setSquareValue(player, rowInd, colInd) {
-        _board[rowInd][colInd] = player;
+    function setSquareValue(playerTurn, rowInd, colInd) {
+        _board[rowInd][colInd] = playerTurn;
     }
 
     function clearBoard() {
@@ -36,36 +36,48 @@ const Gameboard = (function () {
 
 })();
 
-function Player(symbol) {
+function Player(turn, symbol) {
     // Player symbol
     let _symbol = symbol;
+    const _turn = turn;
+
+    function getTurn() {
+        return _turn;
+    }
 
     function getSymbol() {
         return _symbol;
     }
 
     return {
-        getSymbol
+        getSymbol,
+        getTurn
     };
 };
 
 const GameController = (function () {
+    /*
+       -1 - draw
+        0 - ongoing
+        1 - player 1 wins
+        2 - player 2 wins
+    */
     let _gameState = 0;
-    let player1 = Player('X');
-    let player2 = Player('O');
-    let _playerTurn = 1;
+    let player1 = Player(1, 'X');
+    let player2 = Player(2, 'O');
+    let _playerTurn = player1.getTurn();
 
     function getTurn() {
         return _playerTurn;
     }
 
     function toggleTurn() {
-        _playerTurn = Number(!_playerTurn);
+        _playerTurn = (_playerTurn === player1.getTurn()) ? player2.getTurn() : player1.getTurn();
     }
 
     // Check for win conditions
     function checkColumn(player) {
-
+        
     }
 
     function checkRow(player) {
