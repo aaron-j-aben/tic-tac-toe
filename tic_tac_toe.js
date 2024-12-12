@@ -20,7 +20,7 @@ const Gameboard = (function () {
         _board[rowInd][colInd] = playerTurn;
     }
 
-    function boardFull() {
+    function isFull() {
         return _board.every((row) => !row.includes(0));
     }
 
@@ -123,9 +123,20 @@ const GameController = (function () {
 
     }
 
-    // Check for draws - all squares filled, win condition not fulfilled
+    /**
+     * 
+     * @param {number} row 
+     * @param {number} col 
+     * @returns - integer representing the game state after checking win conditions
+     */
     function checkWin(row, col) {
-        
+        if (checkRow(row) || checkColumn(col) || checkDiagonals(row, col)) {
+            return _playerTurn;
+        }
+
+        if (Gameboard.isFull()) {
+            return -1;
+        }
     }
 
     // player turn behavior
