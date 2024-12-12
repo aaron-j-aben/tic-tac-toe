@@ -3,8 +3,15 @@
  *  @author Aaron JM Aben
 */
 
+// Gameboard on global scope because it should be independent of both game logic
+// and GUI logic
 const Gameboard = (function () {
-    const _board = Array(3).map((col) => Array(3).fill(0));
+    const _board = [...Array(3)].map((col) => Array(3).fill(0));
+
+    // FUNCTION FOR TESTING
+    function GIVEBOARD() {
+        return _board;
+    }
 
     function getSquareValue(rowInd, colInd) {
         return _board[rowInd][colInd];
@@ -33,6 +40,8 @@ const Gameboard = (function () {
     }
 
     return {
+        GIVEBOARD,
+
         getSquareValue,
         setSquareValue,
         isFull,
@@ -114,20 +123,16 @@ const GameController = (function () {
 
     function checkDiagonals(row, col) {
         // check main diagonal
-        if (row === col) {
-            for (let main = 0; main < 3; main++) {
-                if (Gameboard.getSquareValue(main, main) !== _playerTurn) {
-                    return false;
-                }
+        for (let main = 0; main < 3; main++) {
+            if (Gameboard.getSquareValue(main, main) !== _playerTurn) {
+                return false;
             }
         }
 
         //check minor diagonal
-        if (Math.abs(row - col) === 2 || row === 1 && col === 1) {
-            for (let minor = 0; minor < 3; main++) {
-                if (Gameboard.getSquareValue(minor, 2 - minor) !== _playerTurn) {
-                    return false;
-                }
+        for (let minor = 0; minor < 3; minor++) {
+            if (Gameboard.getSquareValue(minor, 2 - minor) !== _playerTurn) {
+                return false;
             }
         }
 
@@ -169,6 +174,8 @@ const GameController = (function () {
         if (updateGameState(row, col) === ONGOING) {
             toggleTurn();
         };
+
+        printTicTacToeBoard(Gameboard.GIVEBOARD())
     }
 
     return {
@@ -190,3 +197,22 @@ const DisplayController = (function () {
 
     // Announce winner
 })();
+
+// TESTING FUNCTIONS
+function printTicTacToeBoard(board) {
+    if (board.length !== 3 || board.some(row => row.length !== 3)) {
+      console.error("Invalid board! The board must be a 3x3 array.");
+      return;
+    }
+  
+    const symbols = { 0: " ", 1: "X", 2: "O" };
+  
+    for (let i = 0; i < board.length; i++) {
+      const row = board[i].map(cell => symbols[cell] || " ").join(" | ");
+      console.log(row);
+      if (i < board.length - 1) {
+        console.log("--|---|--");
+      }
+    }
+  }
+  
