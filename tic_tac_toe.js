@@ -60,12 +60,11 @@ function Player(turn, symbol) {
 };
 
 const GameController = (function () {
-    /*
-       -1 - draw
-        0 - ongoing
-        1 - player 1 wins
-        2 - player 2 wins
-    */
+    const DRAW = -1;
+    const ONGOING = 0;
+    const P1WIN = 1;
+    const P2WIN = 2;
+    
     let _gameState = 0;
     let player1 = Player(1, 'X');
     let player2 = Player(2, 'O');
