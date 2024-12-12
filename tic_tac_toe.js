@@ -8,9 +8,22 @@
 const Gameboard = (function () {
     const _board = [...Array(3)].map((col) => Array(3).fill(0));
 
-    // FUNCTION FOR TESTING
-    function GIVEBOARD() {
-        return _board;
+    // FUNCTIONS FOR TESTING
+    function printTicTacToeBoard() {
+        if (_board.length !== 3 || _board.some(row => row.length !== 3)) {
+          console.error("Invalid board! The board must be a 3x3 array.");
+          return;
+        }
+      
+        const symbols = { 0: " ", 1: "X", 2: "O" };
+      
+        for (let i = 0; i < _board.length; i++) {
+          const row = _board[i].map(cell => symbols[cell] || " ").join(" | ");
+          console.log(row);
+          if (i < _board.length - 1) {
+            console.log("--|---|--");
+          }
+        }
     }
 
     function getSquareValue(rowInd, colInd) {
@@ -40,8 +53,7 @@ const Gameboard = (function () {
     }
 
     return {
-        GIVEBOARD,
-
+        printTicTacToeBoard,
         getSquareValue,
         setSquareValue,
         isFull,
@@ -198,21 +210,4 @@ const DisplayController = (function () {
     // Announce winner
 })();
 
-// TESTING FUNCTIONS
-function printTicTacToeBoard(board) {
-    if (board.length !== 3 || board.some(row => row.length !== 3)) {
-      console.error("Invalid board! The board must be a 3x3 array.");
-      return;
-    }
-  
-    const symbols = { 0: " ", 1: "X", 2: "O" };
-  
-    for (let i = 0; i < board.length; i++) {
-      const row = board[i].map(cell => symbols[cell] || " ").join(" | ");
-      console.log(row);
-      if (i < board.length - 1) {
-        console.log("--|---|--");
-      }
-    }
-  }
   
