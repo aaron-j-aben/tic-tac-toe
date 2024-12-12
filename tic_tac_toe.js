@@ -187,7 +187,14 @@ const GameController = (function () {
             toggleTurn();
         };
 
-        printTicTacToeBoard(Gameboard.GIVEBOARD())
+        Gameboard.printTicTacToeBoard();
+        if (getGameState() === player1.getTurn()) {
+            console.log("Player 1 Won!");
+        } else if (getGameState() === player2.getTurn()) {
+            console.log("Player 2 Won!");
+        } else if (getGameState() === DRAW) {
+            console.log("DRAW!");
+        }
     }
 
     return {
