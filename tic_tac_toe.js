@@ -166,7 +166,9 @@ const GameController = (function () {
     // Individual turn
     function playTurn(row, col) {
         Gameboard.setSquareValue(getPlayerTurn(), row, col);
-        updateGameState(row, col) !== 0;
+        if (updateGameState(row, col) === ONGOING) {
+            toggleTurn();
+        };
     }
 
     return {
