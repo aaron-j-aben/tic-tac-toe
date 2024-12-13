@@ -75,13 +75,53 @@ body {
     height: 90%;
     border-radius: 20px;
     font-size: 4rem;
+
+    background-color: rgb(240, 235, 235);
+    border: none;
+    box-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.589);
+    
+    transition: 0.2s ease-in-out;
 }
 
-.ttt-board-square[data-player="1"] {
+.ttt-board-square > p {
+    position: absolute;
+    opacity: 0;
+}
+
+.ttt-board-square:disabled {
+    background-color: rgb(240, 235, 235);
+    border: none;
+    box-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.589);
+}
+
+.ttt-board-square:hover:not(:disabled) {
+    transform: translate(-5px, -5px);
+}
+
+.ttt-board-square:active:not(:disabled) {
+    transition: 0.1s ease-in-out;
+    transform: translate(2px, 2px);
+}
+
+.ttt-board.maybe-x > .ttt-board-square:hover:not(:disabled) > .x {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
+    color: rgb(255, 115, 0, 0.3);
+}
+
+.ttt-board.maybe-o > .ttt-board-square:hover:not(:disabled) > .o {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
+    color: rgba(75, 0, 205, 0.3);
+}
+
+.ttt-board-square.X > .x {
+    opacity: 1;
     color: rgb(255, 115, 0);
 }
 
-.ttt-board-square[data-player="2"] {
+.ttt-board-square.O > .o {
+    opacity: 1;
     color: rgb(75, 0, 205);
 }
 

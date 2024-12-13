@@ -239,17 +239,17 @@ const GameController = (function () {
 })();
 
 const DisplayController = (function () {
+    const boardDisplay = document.querySelector(".ttt-board");
     
     function gameTurn(clickEvent) {
-        const square = clickEvent.target;
+        const square = clickEvent.target.closest(".ttt-board-square");
         const row = square.dataset.xcoord;
         const col = square.dataset.ycoord;
-
         const gameState = GameController.playTurn(row, col);
         const player = Gameboard.getSquareValue(row, col)
         const symbol = GameController.getPlayerSymbol(player);
 
-        square.textContent = symbol;
+        square.classList.add(symbol);
         square.dataset.player = player;
 
         square.disabled = true;
@@ -257,6 +257,9 @@ const DisplayController = (function () {
         // Handle game ending
         if (gameState !== GameController.ONGOING) {
             endGame();
+        } else {
+            boardDisplay.classList.toggle("maybe-x");
+            boardDisplay.classList.toggle("maybe-o");
         }
     }
 
@@ -265,13 +268,24 @@ const DisplayController = (function () {
 
     for (squareNode of boardSquareNodes) {
         squareNode.addEventListener("click", gameTurn);
+        squareNode.disabled = true;
     }
 
+    // GAME START
+    function startGame() {
+        for (squareNode of boardSquareNodes) {
+            squareNode.disabled = false;
+        }
+
+        boardDisplay.classList.toggle("maybe-x");
+    }
+
+    // For testing
+    startGame();
+    
     // Reset board
 
     // Restart board button handling
-
-    // Deactivate squares
 
     // Announce winner
     function endGame() {
