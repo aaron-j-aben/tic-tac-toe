@@ -100,6 +100,10 @@ const GameController = (function () {
         return _playerTurn;
     }
 
+    function getPlayerSymbol(playerTurn) {
+        return (playerTurn === player1.getTurn()) ? player1.getSymbol() : player2.getSymbol;
+    }
+
     function setGameState(state) {
         _gameState = state;
     }
@@ -221,6 +225,7 @@ const GameController = (function () {
         getGameState,
         getPlayerTurn,
         playTurn,
+        getPlayerSymbol,
         restartGame
     }
 })();
@@ -229,12 +234,28 @@ const DisplayController = (function () {
     
     function gameTurn(clickEvent) {
         const square = clickEvent.target;
+        const row = square.dataset.xcoord;
+        const col = square.dataset.ycoord;
 
-        
+        const gameState = GameController.playTurn(row, col);
+        const symbol = getPlayerSymbol(Gameboard.getSquareValue(row, col));
+
+        square.textContent = symbol;
+
+        square.disabled = true;
+
+        // Handle game ending
+        if (gameState !== ONGOING) {
+            endGame();
+        }
     }
 
     // Initialize board - assign listeners for all positions
     const boardSquareNodes = document.querySelectorAll(".ttt-board-square");
+
+    for (squareNode of boardSquareNodes) {
+        squareNode.addEventListener("click", );
+    }
 
     // Reset board
 
@@ -243,6 +264,10 @@ const DisplayController = (function () {
     // Deactivate squares
 
     // Announce winner
+    function endGame() {
+
+    }
+
 })();
 
   
