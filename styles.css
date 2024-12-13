@@ -11,5 +11,12 @@
 }
 
 .ttt-board {
-    
+    width: 400px;
+    height: 400px;
+
+    display: grid;
+    grid-template-rows: 5fr 1fr 5fr 1fr 5fr;
+    grid-template-columns: 5fr 1fr 5fr 1fr 5fr;
+    justify-items: center;
+    align-items: center;
 }
