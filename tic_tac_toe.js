@@ -226,7 +226,15 @@ const GameController = (function () {
 })();
 
 const DisplayController = (function () {
+    
+    function gameTurn(clickEvent) {
+        const square = clickEvent.target;
+
+        
+    }
+
     // Initialize board - assign listeners for all positions
+    const boardSquareNodes = document.querySelectorAll(".ttt-board-square");
 
     // Reset board
 
