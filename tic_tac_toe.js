@@ -3,6 +3,11 @@
  *  @author Aaron JM Aben
 */
 
+const DRAW = -1;
+const ONGOING = 0;
+const P1WIN = 1;
+const P2WIN = 2;
+
 // Gameboard on global scope because it should be independent of both game logic
 // and GUI logic
 const Gameboard = (function () {
@@ -82,11 +87,6 @@ function Player(turn, symbol) {
 };
 
 const GameController = (function () {
-    const DRAW = -1;
-    const ONGOING = 0;
-    const P1WIN = 1;
-    const P2WIN = 2;
-    
     let _gameState = ONGOING;
     let player1 = Player(1, 'X');
     let player2 = Player(2, 'O');
@@ -101,7 +101,7 @@ const GameController = (function () {
     }
 
     function getPlayerSymbol(playerTurn) {
-        return (playerTurn === player1.getTurn()) ? player1.getSymbol() : player2.getSymbol;
+        return (playerTurn === player1.getTurn()) ? player1.getSymbol() : player2.getSymbol();
     }
 
     function setGameState(state) {
@@ -238,7 +238,7 @@ const DisplayController = (function () {
         const col = square.dataset.ycoord;
 
         const gameState = GameController.playTurn(row, col);
-        const symbol = getPlayerSymbol(Gameboard.getSquareValue(row, col));
+        const symbol = GameController.getPlayerSymbol(Gameboard.getSquareValue(row, col));
 
         square.textContent = symbol;
 
