@@ -254,7 +254,7 @@ const DisplayController = (function () {
     const boardSquareNodes = document.querySelectorAll(".ttt-board-square");
 
     for (squareNode of boardSquareNodes) {
-        squareNode.addEventListener("click", );
+        squareNode.addEventListener("click", gameTurn);
     }
 
     // Reset board
