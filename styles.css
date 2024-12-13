@@ -16,22 +16,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 400px;
 }
 
 .ttt-board {
-    width: 400px;
-    height: 400px;
+    width: 325px;
+    height: 325px;
 
     display: grid;
-    grid-template-rows: 5fr 1fr 5fr 1fr 5fr;
-    grid-template-columns: 5fr 1fr 5fr 1fr 5fr;
+    grid-template-rows: 8fr 1fr 8fr 1fr 8fr;
+    grid-template-columns: 8fr 1fr 8fr 1fr 8fr;
     justify-items: center;
     align-items: center;
 }
 
-/* Square placements */
-
+/* Square */
 .ttt-board-square[data-xcoord="0"][data-ycoord="0"] {
     grid-area: 1 / 1 / 2 / 2;
 }
@@ -68,7 +67,7 @@ body {
     grid-area: 5 / 5 / 6 / 6;
 }
 
-/* Grid line placements */
+/* Grid line */
 .grid-line.vert.one {
     grid-area: 1 / 2 / -1 / 3;
 }
@@ -83,4 +82,11 @@ body {
 
 .grid-line.horiz.two {
     grid-area: 4 / 1 / 5 / -1;
+}
+
+.grid-line {
+    background-color: navy;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
 }
