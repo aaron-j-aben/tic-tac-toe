@@ -20,3 +20,58 @@
     justify-items: center;
     align-items: center;
 }
+
+/* Square placements */
+
+.ttt-board-square[data-xcoord="0"][data-ycoord="0"] {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.ttt-board-square[data-xcoord="0"][data-ycoord="1"] {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.ttt-board-square[data-xcoord="0"][data-ycoord="2"] {
+    grid-area: 1 / 5 / 2 / 6;
+}
+
+.ttt-board-square[data-xcoord="1"][data-ycoord="0"] {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.ttt-board-square[data-xcoord="1"][data-ycoord="1"] {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.ttt-board-square[data-xcoord="1"][data-ycoord="2"] {
+    grid-area: 3 / 5 / 4 / 6;
+}
+
+.ttt-board-square[data-xcoord="2"][data-ycoord="0"] {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+.ttt-board-square[data-xcoord="2"][data-ycoord="1"] {
+    grid-area: 5 / 3 / 6 / 4;
+}
+
+.ttt-board-square[data-xcoord="2"][data-ycoord="2"] {
+    grid-area: 5 / 5 / 6 / 6;
+}
+
+/* Grid line placements */
+.grid-line.vert.one {
+    grid-area: 1 / 2 / -1 / 3;
+}
+
+.grid-line.vert.two {
+    grid-area: 1 / 4 / -1 / 5;
+}
+
+.grid-line.horiz.one {
+    grid-area: 2 / 1 / 3 / -1;
+}
+
+.grid-line.horiz.two {
+    grid-area: 4 / 1 / 5 / -1;
+}
