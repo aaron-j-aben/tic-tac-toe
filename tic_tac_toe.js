@@ -275,7 +275,10 @@ const DisplayController = (function () {
 
     // Announce winner
     function endGame() {
-
+        // Disable all player game actions
+        for (squareNode of boardSquareNodes) {
+            squareNode.disabled = true;
+        }
     }
 
 })();
