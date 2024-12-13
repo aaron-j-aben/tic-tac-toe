@@ -243,9 +243,11 @@ const DisplayController = (function () {
         const col = square.dataset.ycoord;
 
         const gameState = GameController.playTurn(row, col);
-        const symbol = GameController.getPlayerSymbol(Gameboard.getSquareValue(row, col));
+        const player = Gameboard.getSquareValue(row, col)
+        const symbol = GameController.getPlayerSymbol(player);
 
         square.textContent = symbol;
+        square.dataset.player = player;
 
         square.disabled = true;
 
