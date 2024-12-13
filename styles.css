@@ -5,9 +5,18 @@
     font-family: system-ui, sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
 .centering {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 500px;
 }
 
 .ttt-board {
