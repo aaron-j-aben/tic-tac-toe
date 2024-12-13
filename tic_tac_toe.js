@@ -138,21 +138,24 @@ const GameController = (function () {
     }
 
     function checkDiagonals(row, col) {
+        let mainDiag = true;
+        let minorDiag = true;
+
         // check main diagonal
         for (let main = 0; main < 3; main++) {
             if (Gameboard.getSquareValue(main, main) !== _playerTurn) {
-                return false;
+                mainDiag = false;
             }
         }
 
         //check minor diagonal
         for (let minor = 0; minor < 3; minor++) {
             if (Gameboard.getSquareValue(minor, 2 - minor) !== _playerTurn) {
-                return false;
+                minorDiag = false;
             }
         }
 
-        return true;
+        return mainDiag || minorDiag;
 
     }
 
