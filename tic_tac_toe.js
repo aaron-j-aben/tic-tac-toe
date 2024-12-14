@@ -45,8 +45,8 @@ const Gameboard = (function () {
     }
 
     function clearBoard() {
-        for (let i = 0; i < _board.length; i++) {
-            for (let j = 0; j < _board[i].length; j++) {
+        for (let rowInd = 0; rowInd < _board.length; rowInd++) {
+            for (let colInd = 0; colInd < _board[rowInd].length; colInd++) {
                 _board[rowInd][colInd] = 0;
             }
         }
@@ -276,21 +276,21 @@ const DisplayController = (function () {
 
     // GAME START
     function startGame() {
+        GameController.restartGame();
+
         for (squareNode of boardSquareNodes) {
             squareNode.disabled = false;
+            squareNode.classList.remove('X', 'O');
+            squareNode.dataset.player = 0;
         }
 
-        boardDisplay.classList.toggle("maybe-x");
+        boardDisplay.classList.add("maybe-x");
+        boardDisplay.classList.remove("maybe-o");
         gameStateDisplay.textContent = "Player 1's turn";
         startBtn.textContent = "RESTART GAME";
     }
 
-    // For testing
-    startGame();
-    
-    // Reset board
-
-    // Restart board button handling
+    startBtn.addEventListener("click", startGame);
 
     // Announce winner
     function endGame() {
