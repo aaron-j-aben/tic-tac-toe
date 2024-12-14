@@ -240,12 +240,14 @@ const GameController = (function () {
 
 const DisplayController = (function () {
     const boardDisplay = document.querySelector(".ttt-board");
+    const gameStateDisplay = document.querySelector(".game-state-display");
+    const startBtn = document.querySelector(".game-start");
     
     function gameTurn(clickEvent) {
         const square = clickEvent.target.closest(".ttt-board-square");
         const row = square.dataset.xcoord;
         const col = square.dataset.ycoord;
-        const gameState = GameController.playTurn(row, col);
+        const gameState = GameController.playTurn(row, col); // changes turn 
         const player = Gameboard.getSquareValue(row, col)
         const symbol = GameController.getPlayerSymbol(player);
 
@@ -260,6 +262,7 @@ const DisplayController = (function () {
         } else {
             boardDisplay.classList.toggle("maybe-x");
             boardDisplay.classList.toggle("maybe-o");
+            gameStateDisplay.textContent = (player === 1) ? "Player 2's turn" : "Player 1's turn";
         }
     }
 
@@ -278,6 +281,8 @@ const DisplayController = (function () {
         }
 
         boardDisplay.classList.toggle("maybe-x");
+        gameStateDisplay.textContent = "Player 1's turn";
+        startBtn.textContent = "RESTART GAME";
     }
 
     // For testing
@@ -292,6 +297,14 @@ const DisplayController = (function () {
         // Disable all player game actions
         for (squareNode of boardSquareNodes) {
             squareNode.disabled = true;
+        }
+
+        if (GameController.getGameState() === GameController.DRAW) {
+            gameStateDisplay.textContent = "A DRAW!";
+        } else if (GameController.getGameState() === GameController.P1WIN) {
+            gameStateDisplay.textContent = "PLAYER 1 WINS!";
+        } else if (GameController.getGameState() === GameController.P2WIN) {
+            gameStateDisplay.textContent = "PLAYER 2 WINS!";
         }
     }
 

@@ -71,6 +71,7 @@ body {
     align-items: center;
     gap: 1rem;
     font-size: 1.4rem;
+    width: 12rem;
 }
 
 .game-start {
