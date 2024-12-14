@@ -8,8 +8,54 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     height: 100vh;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.page-title {
+    margin: 20px 0 5px;
+    text-align: center;
+    font-size: 4rem;
+}
+
+.player-turn-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.player-turn-card {
+    width: 6rem;
+    height: 6rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.player-name {
+    font-size: 1.5rem;
+}
+
+.player-symbol {
+    font-size: 2.5rem;
+}
+
+.player-symbol.p1 {
+    color: rgb(125, 7, 7);
+}
+
+.player-symbol.p2 {
+    color: rgba(75, 0, 205);
 }
 
 .centering {
