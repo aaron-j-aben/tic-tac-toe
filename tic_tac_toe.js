@@ -306,6 +306,8 @@ const DisplayController = (function () {
         } else if (GameController.getGameState() === GameController.P2WIN) {
             gameStateDisplay.textContent = "PLAYER 2 WINS!";
         }
+
+        startBtn.textContent = "START GAME";
     }
 
 })();
